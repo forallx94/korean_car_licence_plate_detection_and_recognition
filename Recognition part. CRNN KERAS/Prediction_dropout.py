@@ -1,7 +1,7 @@
 import cv2
 import itertools, os, time
 import numpy as np
-from Model import get_Model
+from Model_dropout import get_Model
 from parameter import letters
 import argparse
 from keras import backend as K
@@ -113,7 +113,7 @@ for test_img in test_imgs:
         acc += 1
     total += 1
     print("Predicted text: " + pred_texts)
-    print("image : " + test_img[:-9])
+    print("True text: " + test_img[:-9])
     #print('Predicted: %s  /  True: %s' % (label_to_hangul(pred_texts), label_to_hangul(test_img[0:-4])))
     
     # cv2.rectangle(img, (0,0), (150, 30), (0,0,0), -1)
@@ -126,6 +126,6 @@ for test_img in test_imgs:
 
 end = time.time()
 total_time = (end - start)
-#print("Time : ",total_time / total)
-#print("ACC : ", acc / total ,' | acc count : ', acc , ' | total count : ' , total)
-#print("letter ACC : ", letter_acc / letter_total ," | letter acc count :  : " ,letter_acc ," | letter total count :  : " , letter_total)
+print("Time : ",total_time / total)
+print("ACC : ", acc / total ,' | acc count : ', acc , ' | total count : ' , total)
+print("letter ACC : ", letter_acc / letter_total ," | letter acc count :  : " ,letter_acc ," | letter total count :  : " , letter_total)

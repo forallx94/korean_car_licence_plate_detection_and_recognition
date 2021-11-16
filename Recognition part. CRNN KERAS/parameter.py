@@ -11,6 +11,7 @@ img_w, img_h = 128, 64
 # Network parameters
 batch_size = 128
 val_batch_size = 16
+drop_out_rate = 0.2
 
 downsample_factor = 4
 max_text_len = 9

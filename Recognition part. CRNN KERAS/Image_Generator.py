@@ -14,15 +14,15 @@ def text_to_labels(text):      # text를 letters 배열에서의 인덱스 값�
 class TextImageGenerator:
     def __init__(self, img_dirpath, img_w, img_h,
                  batch_size, downsample_factor, max_text_len=9):
-        self.img_h = img_h
-        self.img_w = img_w
-        self.batch_size = batch_size
-        self.max_text_len = max_text_len
+        self.img_h = img_h # 이미지 높이
+        self.img_w = img_w # 이미지 넓이
+        self.batch_size = batch_size # 배치 사이즈
+        self.max_text_len = max_text_len # 최대 길이
         self.downsample_factor = downsample_factor
         self.img_dirpath = img_dirpath                  # image dir path
         self.img_dir = [f for f in os.listdir(img_dirpath) if f.endswith('.jpg') or f.endswith('.png')]     # images list
         self.n = len(self.img_dir)                      # number of images
-        self.indexes = list(range(self.n))
+        self.indexes = list(range(self.n)) # 인덱스
         self.cur_index = 0
         self.imgs = np.zeros((self.n, self.img_h, self.img_w))
         self.texts = []
@@ -40,29 +40,29 @@ class TextImageGenerator:
                 self.imgs[i, :, :] = img
                 if d_set == "train":
                     #print(img_file)
-                    if len(img_file[:-10])!=8 and len(img_file[:-10])!=9:
+                    if len(img_file[:-4])!=8 and len(img_file[:-4])!=9:
                         print(img_file)
                     
-                    if len(img_file[:-10]) == 8:
+                    if len(img_file[:-4]) == 8:
                         pad = img_file
                         
                         img_file = 'Z' + pad
                         
                     
-                    self.texts.append(img_file[:-10])
-                    if ' ' in img_file[:-10]:
-                        print(img_file[:-10])
+                    self.texts.append(img_file[:-4])
+                    if ' ' in img_file[:-4]:
+                        print(img_file[:-4])
                         
                 elif d_set == "val":
-                    if len(img_file[:-10])!=8 and len(img_file[:-10])!=9:
+                    if len(img_file)!=8 and len(img_file)!=9:
                         print(img_file)
                         
-                    if len(img_file[:-10]) == 8:
+                    if len(img_file) == 8:
                         pad = img_file
                         
                         img_file = 'Z' + pad
                         
-                    self.texts.append(img_file[:-10])
+                    self.texts.append(img_file)
                  
             except:
                 print("fuck! " + str(img_file))

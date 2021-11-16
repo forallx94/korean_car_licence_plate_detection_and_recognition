@@ -10,17 +10,16 @@ K.set_learning_phase(0)
 
 model = get_Model(training=True)
 print(model.summary())
-model.load_weights('model_450k.hdf5')
 try:
-    
+    model.load_weights('model_450k.hdf5')
     print("...Previous weight data...")
 except:
     print("...New weight data...")
     pass
 
-train_file_path = './DB/synt_new/'
+train_file_path = './DB/'
 tiger_train = TextImageGenerator(train_file_path, img_w, img_h, batch_size, downsample_factor)
-tiger_train.build_data()
+tiger_train.build_data('train')
 
 #valid_file_path = './DB/test/'
 #tiger_val = TextImageGenerator(valid_file_path, img_w, img_h, val_batch_size, downsample_factor)
